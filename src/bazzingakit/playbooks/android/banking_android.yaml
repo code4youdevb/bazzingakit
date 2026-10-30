@@ -1,0 +1,30 @@
+# Playbook para análisis de apps bancarias Android con protecciones múltiples
+# (pero sin RASP comercial detectado).
+#
+# Si detectas RASP conocido, usa playbooks/rasp/<rasp>.yaml en su lugar.
+
+name: banking_android
+description: Bypass extendido + anti-frida + análisis crypto para apps bancarias Android
+platform: android
+spawn_required: true
+warning: |
+  Si la app tiene RASP comercial (Promon, Appdome, DexGuard), este playbook
+  puede ser insuficiente o detectado. Ejecuta primero 'bazzingakit analyze <pkg>'.
+
+scripts:
+  - name: antifrida
+    path: scripts/android/basic/antifrida_generic.js
+    order: 1
+    critical: true
+
+  - name: ssl_bypass
+    path: scripts/android/basic/ssl_bypass_universal.js
+    order: 2
+
+  - name: root_bypass
+    path: scripts/android/basic/root_bypass.js
+    order: 3
+
+  - name: crypto_hook
+    path: scripts/android/analysis/crypto_hook.js
+    order: 4

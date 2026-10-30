@@ -1,0 +1,13 @@
+name: standard_ios
+description: Análisis básico iOS con bypass de jailbreak detection y SSL pinning
+platform: ios
+spawn_required: false
+
+scripts:
+  - name: jailbreak_bypass
+    path: scripts/ios/basic/jailbreak_bypass.js
+    order: 1
+
+  - name: ssl_bypass
+    path: scripts/ios/basic/ssl_bypass_ios.js
+    order: 2

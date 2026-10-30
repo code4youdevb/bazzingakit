@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bazzingakit"
+version = "0.1.0"
+description = "Mobile application security analysis framework with Frida, RASP detection and AI assistance"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Bazzingakit Team" }]
+keywords = ["mobile", "security", "frida", "android", "ios", "pentest", "rasp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+
+dependencies = [
+    "click>=8.1",
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+    "pyyaml>=6.0",
+    "rich>=13.7",
+    "anthropic>=0.39",
+    "frida>=16.0",
+    "frida-tools>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.1",
+    "mypy>=1.7",
+]
+
+[project.scripts]
+bazzingakit = "bazzingakit.cli.main:cli"
+bzk = "bazzingakit.cli.main:cli"
+
+[project.urls]
+Repository = "https://github.com/yourusername/bazzingakit"
+Issues = "https://github.com/yourusername/bazzingakit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+bazzingakit = [
+    "ai/prompts/*.md",
+    "config/*.yaml",
+    "scripts/**/*.js",
+    "playbooks/**/*.yaml",
+    "signatures/*.yaml",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

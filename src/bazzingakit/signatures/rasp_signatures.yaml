@@ -1,0 +1,133 @@
+# Firmas para detección estática de RASPs (Runtime Application Self-Protection)
+# Formato:
+#   <rasp_id>:
+#     name: Nombre legible
+#     vendor: Proveedor
+#     platforms: [android, ios]
+#     indicators:
+#       libraries: [libX.so, ...]      # Librerías nativas en lib/*/
+#       classes: [com.x.y, ...]        # Paquetes/clases en el código
+#       strings: [STRING1, ...]        # Strings identificables en DEX/binario
+#       assets: [assets/.xyz/]         # Rutas específicas en assets
+#     confidence_weight: peso cuando matchea (0-1)
+
+promon_shield:
+  name: Promon SHIELD
+  vendor: Promon
+  platforms: [android, ios]
+  indicators:
+    libraries: [libshield.so, libshieldx.so, libpromon.so]
+    classes: [no.promon.shield, com.promon.sse]
+    strings: [SHIELDRT, "Promon SHIELD"]
+  confidence_weight: 0.95
+
+guardsquare_dexguard:
+  name: Guardsquare DexGuard
+  vendor: Guardsquare
+  platforms: [android]
+  indicators:
+    libraries: [libdexguard.so]
+    classes: [com.guardsquare]
+    strings: ["DexGuard"]
+  confidence_weight: 0.85
+
+guardsquare_ixguard:
+  name: Guardsquare iXGuard
+  vendor: Guardsquare
+  platforms: [ios]
+  indicators:
+    strings: ["iXGuard"]
+  confidence_weight: 0.85
+
+appdome:
+  name: Appdome
+  vendor: Appdome
+  platforms: [android, ios]
+  indicators:
+    libraries: [libappdome.so, libADCPlatform.so, libadcplatform.so]
+    assets: ["assets/.appdome/"]
+    strings: ["ADC_", "Appdome"]
+  confidence_weight: 0.90
+
+talsec_freerasp:
+  name: Talsec freeRASP
+  vendor: Talsec
+  platforms: [android, ios]
+  indicators:
+    libraries: [libTalsecRuntime.so, libtalsec.so]
+    classes: [com.aheaditec.talsec, com.aheaditec.freerasp]
+    strings: ["TalsecRuntime"]
+  confidence_weight: 0.90
+
+zimperium:
+  name: Zimperium zDefend/zIAP
+  vendor: Zimperium
+  platforms: [android, ios]
+  indicators:
+    libraries: [libzdetection.so, libzimperium.so, libzdefend.so]
+    classes: [com.zimperium, com.zdefend]
+  confidence_weight: 0.90
+
+build38_tak:
+  name: Build38 T.A.K
+  vendor: Build38
+  platforms: [android, ios]
+  indicators:
+    libraries: [libtak.so]
+    classes: [com.build38]
+  confidence_weight: 0.85
+
+jscrambler:
+  name: Jscrambler
+  vendor: Jscrambler
+  platforms: [android, ios]
+  indicators:
+    strings: ["Jscrambler", "_0x[a-f0-9]+"]
+  confidence_weight: 0.70
+
+verimatrix:
+  name: Verimatrix (Inside Secure)
+  vendor: Verimatrix
+  platforms: [android, ios]
+  indicators:
+    libraries: [libwhitecryption.so, libVMrsa.so]
+    classes: [com.verimatrix, com.insidesecure]
+    strings: ["WhiteCryption"]
+  confidence_weight: 0.85
+
+hst_vcs:
+  name: HST VCS (Virtual Compliance Security)
+  vendor: HST (Hardening Sec Technology)
+  platforms: [android]
+  indicators:
+    classes: [br.com.hst.vcs, br.com.hst.vcs.core, br.com.hst.vcs.components]
+    strings: ["VCSInitProvider", "HstJsonField", "HstJsonSensitive"]
+  confidence_weight: 0.90
+
+# Protecciones discretas (no son RASP completos pero merecen detección)
+rootbeer:
+  name: RootBeer
+  vendor: scottyab (opensource)
+  platforms: [android]
+  indicators:
+    classes: [com.scottyab.rootbeer]
+  confidence_weight: 0.95
+  category: root_detection
+
+okhttp_cert_pinning:
+  name: OkHttp Certificate Pinner
+  vendor: Square
+  platforms: [android]
+  indicators:
+    classes: [okhttp3.CertificatePinner, com.squareup.okhttp3.CertificatePinner]
+  confidence_weight: 0.80
+  category: ssl_pinning
+
+trustkit:
+  name: TrustKit
+  vendor: datatheorem (opensource)
+  platforms: [android, ios]
+  indicators:
+    classes: [com.datatheorem.android.trustkit, com.datatheorem.mobile.trustkit]
+  confidence_weight: 0.90
+  category: ssl_pinning

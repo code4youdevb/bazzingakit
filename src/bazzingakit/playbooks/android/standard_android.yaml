@@ -1,0 +1,23 @@
+# Playbook estándar para análisis de apps Android sin RASP.
+# Aplica bypasses básicos (SSL, root) + hook de crypto para análisis de tráfico.
+
+name: standard_android
+description: Análisis básico Android para apps sin RASP
+platform: android
+spawn_required: true
+
+scripts:
+  - name: ssl_bypass
+    path: scripts/android/basic/ssl_bypass_universal.js
+    order: 1
+    critical: false
+
+  - name: root_bypass
+    path: scripts/android/basic/root_bypass.js
+    order: 2
+    critical: false
+
+  - name: crypto_hook
+    path: scripts/android/analysis/crypto_hook.js
+    order: 3
+    critical: false
