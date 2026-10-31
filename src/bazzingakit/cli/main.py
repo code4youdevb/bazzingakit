@@ -13,6 +13,7 @@ from bazzingakit.cli.commands import proxy as proxy_cmd
 from bazzingakit.cli.commands import rasp as rasp_cmd
 from bazzingakit.cli.commands import scripts as scripts_cmd
 from bazzingakit.cli.commands import session as session_cmd
+from bazzingakit.cli.commands import tui as tui_cmd
 from bazzingakit.cli.commands.analyze import analyze, run
 from bazzingakit.cli.commands.doctor import doctor as doctor_cmd
 from bazzingakit.cli.commands.investigate import investigate as investigate_cmd
@@ -43,6 +44,7 @@ cli.add_command(objection_cmd)
 # Alias corto
 cli.add_command(objection_cmd, name="obj")
 cli.add_command(doctor_cmd)
+cli.add_command(tui_cmd.tui)
 
 # Grupos
 cli.add_command(config_cmd.config)

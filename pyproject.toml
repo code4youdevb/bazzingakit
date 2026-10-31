@@ -40,6 +40,9 @@ dev = [
     "ruff>=0.1",
     "mypy>=1.7",
 ]
+tui = [
+    "textual>=0.80",
+]
 
 [project.scripts]
 bazzingakit = "bazzingakit.cli.main:cli"

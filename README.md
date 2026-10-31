@@ -10,6 +10,7 @@ Framework de análisis de seguridad móvil para Android y iOS. Combina Frida, ob
 - Wrapper para objection con detección automática de modo
 - Instalación de certificados de Burp Suite (bind mount o módulo Magisk)
 - Sistema de scripts: built-in + carpeta personal con auto-registro
+- Interfaz de texto interactiva opcional (TUI) con `bzk tui`
 
 ---
 
@@ -61,6 +62,17 @@ alias bzk-env="source ~/bazzingakit-env/bin/activate"
 bazzingakit --version
 bazzingakit doctor
 ```
+
+### Interfaz de texto (TUI)
+
+Opcional. Instala el extra `tui` y lánzala:
+
+```bash
+pip install -e ".[tui]"
+bzk tui
+```
+
+La TUI reutiliza el mismo `core` que el CLI y ofrece pestañas para el dashboard, estado del dispositivo, explorador de sesiones, catálogo de scripts y una demo en vivo del pipeline de análisis (eventos → findings → recomendaciones). No requiere dispositivo conectado para arrancar.
 
 ### Dependencias externas opcionales
 
